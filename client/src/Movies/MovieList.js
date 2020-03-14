@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const MovieList = props => {
   const [movies, setMovies] = useState([])
   useEffect(() => {
+    const movieTitle = movies.find(show => movies.id === Number(props.match.params.id))
     const getMovies = () => {
       axios
         .get('http://localhost:5000/api/movies')
@@ -22,7 +23,9 @@ const MovieList = props => {
   return (
     <div className="movie-list">
       {movies.map(movie => (
+        <Link to={`/movies/${movie.id}`}>
         <MovieDetails key={movie.id} movie={movie} />
+        </Link>
       ))}
     </div>
   );
@@ -31,6 +34,7 @@ const MovieList = props => {
 function MovieDetails({ movie }) {
   const { title, director, metascore, stars } = movie;
   return (
+    <Link to= {`/Movies/${id}`}>
     <div className="movie-card">
       <h2>{title}</h2>
       <div className="movie-director">
@@ -47,6 +51,7 @@ function MovieDetails({ movie }) {
         </div>
       ))}
     </div>
+    </Link>
   );
 }
 
