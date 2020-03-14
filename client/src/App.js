@@ -17,7 +17,10 @@ const App = () => {
   return (
     <div>
       <SavedList list={savedList} />
-      <div>Replace this Div with your Routes</div>
+      
+      <div>
+      <Route exact path="/" component={MovieList} />
+      </div>
     </div>
   );
 };
